@@ -1,0 +1,2 @@
+If you are using a desktop version of Dropbox, double-click the 3Dmodel.html file, and the model will open in a browser window.
+If you are using the web version, download the entire 3Dmodel folder, along with all files, and open the 2Dmodel.html file.
