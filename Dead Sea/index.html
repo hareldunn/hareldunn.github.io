@@ -30,7 +30,7 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="data/HistoricDeadSeaSurface_1.js"></script>
+        <script src="data/DeadSea19732017_1.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -50,7 +50,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[30.842603899262876,35.27233290254646],[31.996165741279317,35.72555778117595]]);
+        }).fitBounds([[30.776104027328238,34.49390899511639],[32.290419658244815,37.376154220034486]]);
         var hash = new L.Hash(map);
         map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
         var bounds_group = new L.featureGroup([]);
@@ -61,7 +61,7 @@
         });
         overlay_GoogleSatellite_0.addTo(map);
         map.addLayer(overlay_GoogleSatellite_0);
-        function pop_HistoricDeadSeaSurface_1(feature, layer) {
+        function pop_DeadSea19732017_1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (i in e.target._eventParents) {
@@ -79,32 +79,23 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['DN'] !== null ? Autolinker.link(String(feature.properties['DN'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Image_Date'] !== null ? Autolinker.link(String(feature.properties['Image_Date'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['NDWI_TH'] !== null ? Autolinker.link(String(feature.properties['NDWI_TH'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <td colspan="2"><strong>Year</strong><br />' + (feature.properties['Year'] !== null ? Autolinker.link(String(feature.properties['Year'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Area</strong><br />' + (feature.properties['Area'] !== null ? Autolinker.link(String(feature.properties['Area'])) : '') + '</td>\
+                        <td colspan="2"><strong>Area_KM</strong><br />' + (feature.properties['Area_KM'] !== null ? Autolinker.link(String(feature.properties['Area_KM'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Source</strong><br />' + (feature.properties['Source'] !== null ? Autolinker.link(String(feature.properties['Source'])) : '') + '</td>\
+                        <td colspan="2"><strong>Source Satellite</strong><br />' + (feature.properties['Source Satellite'] !== null ? Autolinker.link(String(feature.properties['Source Satellite'])) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_HistoricDeadSeaSurface_1_0(feature) {
+        function style_DeadSea19732017_1_0(feature) {
             switch(String(feature.properties['Year'])) {
                 case '1973':
                     return {
-                pane: 'pane_HistoricDeadSeaSurface_1',
+                pane: 'pane_DeadSea19732017_1',
                 opacity: 1,
                 color: 'rgba(38,108,251,1.0)',
                 dashArray: '',
@@ -116,7 +107,7 @@
                     break;
                 case '1978':
                     return {
-                pane: 'pane_HistoricDeadSeaSurface_1',
+                pane: 'pane_DeadSea19732017_1',
                 opacity: 1,
                 color: 'rgba(35,156,144,1.0)',
                 dashArray: '',
@@ -128,7 +119,7 @@
                     break;
                 case '1984':
                     return {
-                pane: 'pane_HistoricDeadSeaSurface_1',
+                pane: 'pane_DeadSea19732017_1',
                 opacity: 1,
                 color: 'rgba(0,198,0,1.0)',
                 dashArray: '',
@@ -140,7 +131,7 @@
                     break;
                 case '2015':
                     return {
-                pane: 'pane_HistoricDeadSeaSurface_1',
+                pane: 'pane_DeadSea19732017_1',
                 opacity: 1,
                 color: 'rgba(255,255,0,1.0)',
                 dashArray: '',
@@ -152,7 +143,7 @@
                     break;
                 case '2016':
                     return {
-                pane: 'pane_HistoricDeadSeaSurface_1',
+                pane: 'pane_DeadSea19732017_1',
                 opacity: 1,
                 color: 'rgba(255,128,0,1.0)',
                 dashArray: '',
@@ -164,7 +155,7 @@
                     break;
                 case '2017':
                     return {
-                pane: 'pane_HistoricDeadSeaSurface_1',
+                pane: 'pane_DeadSea19732017_1',
                 opacity: 1,
                 color: 'rgba(255,0,0,1.0)',
                 dashArray: '',
@@ -178,19 +169,19 @@
                     break;
             }
         }
-        map.createPane('pane_HistoricDeadSeaSurface_1');
-        map.getPane('pane_HistoricDeadSeaSurface_1').style.zIndex = 401;
-        map.getPane('pane_HistoricDeadSeaSurface_1').style['mix-blend-mode'] = 'normal';
-        var layer_HistoricDeadSeaSurface_1 = new L.geoJson(json_HistoricDeadSeaSurface_1, {
+        map.createPane('pane_DeadSea19732017_1');
+        map.getPane('pane_DeadSea19732017_1').style.zIndex = 401;
+        map.getPane('pane_DeadSea19732017_1').style['mix-blend-mode'] = 'normal';
+        var layer_DeadSea19732017_1 = new L.geoJson(json_DeadSea19732017_1, {
             attribution: '<a href=""></a>',
-            pane: 'pane_HistoricDeadSeaSurface_1',
-            onEachFeature: pop_HistoricDeadSeaSurface_1,
-            style: style_HistoricDeadSeaSurface_1_0,
+            pane: 'pane_DeadSea19732017_1',
+            onEachFeature: pop_DeadSea19732017_1,
+            style: style_DeadSea19732017_1_0,
         });
-        bounds_group.addLayer(layer_HistoricDeadSeaSurface_1);
-        map.addLayer(layer_HistoricDeadSeaSurface_1);
+        bounds_group.addLayer(layer_DeadSea19732017_1);
+        map.addLayer(layer_DeadSea19732017_1);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'Historic Dead Sea Surface<br /><table><tr><td style="text-align: center;"><img src="legend/HistoricDeadSeaSurface_1_19730.png" /></td><td>1973</td></tr><tr><td style="text-align: center;"><img src="legend/HistoricDeadSeaSurface_1_19781.png" /></td><td>1978</td></tr><tr><td style="text-align: center;"><img src="legend/HistoricDeadSeaSurface_1_19842.png" /></td><td>1984</td></tr><tr><td style="text-align: center;"><img src="legend/HistoricDeadSeaSurface_1_20153.png" /></td><td>2015</td></tr><tr><td style="text-align: center;"><img src="legend/HistoricDeadSeaSurface_1_20164.png" /></td><td>2016</td></tr><tr><td style="text-align: center;"><img src="legend/HistoricDeadSeaSurface_1_20175.png" /></td><td>2017</td></tr></table>': layer_HistoricDeadSeaSurface_1,"Google Satellite": overlay_GoogleSatellite_0,}).addTo(map);
+        L.control.layers(baseMaps,{'DeadSea1973-2017<br /><table><tr><td style="text-align: center;"><img src="legend/DeadSea19732017_1_19730.png" /></td><td>1973</td></tr><tr><td style="text-align: center;"><img src="legend/DeadSea19732017_1_19781.png" /></td><td>1978</td></tr><tr><td style="text-align: center;"><img src="legend/DeadSea19732017_1_19842.png" /></td><td>1984</td></tr><tr><td style="text-align: center;"><img src="legend/DeadSea19732017_1_20153.png" /></td><td>2015</td></tr><tr><td style="text-align: center;"><img src="legend/DeadSea19732017_1_20164.png" /></td><td>2016</td></tr><tr><td style="text-align: center;"><img src="legend/DeadSea19732017_1_20175.png" /></td><td>2017</td></tr></table>': layer_DeadSea19732017_1,"Google Satellite": overlay_GoogleSatellite_0,}).addTo(map);
         L.control.scale({position: 'bottomleft', maxWidth: 100, metric: true, imperial: false, updateWhenIdle: false}).addTo(map);
         setBounds();
         </script>
