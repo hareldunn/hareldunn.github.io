@@ -30,7 +30,7 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="data/BurnScars_1.js"></script>
+        <script src="data/BurnScars_2.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -49,18 +49,23 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[31.256346644565266,34.156955349717244],[31.51790942346877,34.670447967674136]]);
+        }).fitBounds([[31.206078927134712,33.37294466665391],[31.571298234219164,35.53893758471171]]);
         var hash = new L.Hash(map);
         map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
-        var overlay_OpenStreetMap_0 = L.tileLayer('http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        var overlay_GoogleSatellite_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
             opacity: 1.0
         });
-        overlay_OpenStreetMap_0.addTo(map);
-        map.addLayer(overlay_OpenStreetMap_0);
-        function pop_BurnScars_1(feature, layer) {
+        overlay_GoogleSatellite_0.addTo(map);
+        map.addLayer(overlay_GoogleSatellite_0);
+        var overlay_OpenStreetMap_1 = L.tileLayer('http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            opacity: 1.0
+        });
+        overlay_OpenStreetMap_1.addTo(map);
+        map.addLayer(overlay_OpenStreetMap_1);
+        function pop_BurnScars_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (i in e.target._eventParents) {
@@ -82,25 +87,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_BurnScars_1_0(feature) {
-            switch(String(feature.properties['Imagery Date'])) {
-                case '2018/05/11':
-                    return {
-                pane: 'pane_BurnScars_1',
-                opacity: 1,
-                color: 'rgba(255,200,0,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,200,0,0.5019607843137255)',
-            }
-                    break;
-                case '2018/05/15':
-                    return {
-                pane: 'pane_BurnScars_1',
+        function style_BurnScars_2_0() {
+            return {
+                pane: 'pane_BurnScars_2',
                 opacity: 1,
                 color: 'rgba(255,100,0,1.0)',
                 dashArray: '',
@@ -109,36 +98,20 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(253,100,0,0.5019607843137255)',
-            }
-                    break;
-                case '2018/05/16':
-                    return {
-                pane: 'pane_BurnScars_1',
-                opacity: 1,
-                color: 'rgba(255,50,0,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,50,0,0.5019607843137255)',
-            }
-                    break;
+                fillColor: 'rgba(255,100,0,0.5019607843137255)',
             }
         }
-        map.createPane('pane_BurnScars_1');
-        map.getPane('pane_BurnScars_1').style.zIndex = 401;
-        map.getPane('pane_BurnScars_1').style['mix-blend-mode'] = 'normal';
-        var layer_BurnScars_1 = new L.geoJson(json_BurnScars_1, {
+        map.createPane('pane_BurnScars_2');
+        map.getPane('pane_BurnScars_2').style.zIndex = 402;
+        map.getPane('pane_BurnScars_2').style['mix-blend-mode'] = 'normal';
+        var layer_BurnScars_2 = new L.geoJson(json_BurnScars_2, {
             attribution: '<a href="https://twitter.com/HarelDan">Harel Dan</a>',
-            pane: 'pane_BurnScars_1',
-            onEachFeature: pop_BurnScars_1,
-            style: style_BurnScars_1_0,
+            pane: 'pane_BurnScars_2',
+            onEachFeature: pop_BurnScars_2,
+            style: style_BurnScars_2_0,
         });
-        bounds_group.addLayer(layer_BurnScars_1);
-        map.addLayer(layer_BurnScars_1);
+        bounds_group.addLayer(layer_BurnScars_2);
+        map.addLayer(layer_BurnScars_2);
         var title = new L.Control();
         title.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'info');
@@ -150,7 +123,7 @@
         };
         title.addTo(map);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'Burn Scars<br /><table><tr><td style="text-align: center;"><img src="legend/BurnScars_1_201805110.png" /></td><td>2018-05-11</td></tr><tr><td style="text-align: center;"><img src="legend/BurnScars_1_201805151.png" /></td><td>2018-05-15</td></tr><tr><td style="text-align: center;"><img src="legend/BurnScars_1_201805162.png" /></td><td>2018-05-16</td></tr></table>': layer_BurnScars_1,"OpenStreetMap": overlay_OpenStreetMap_0,}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/BurnScars_2.png" /> Burn Scars': layer_BurnScars_2,"OpenStreetMap": overlay_OpenStreetMap_1,"Google Satellite": overlay_GoogleSatellite_0,}).addTo(map);
         setBounds();
         </script>
     </body>
