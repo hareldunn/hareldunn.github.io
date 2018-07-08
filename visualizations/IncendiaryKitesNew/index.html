@@ -16,7 +16,7 @@
             margin: 0;
         }
         </style>
-        <title>Incendiary Kites Burn Scars</title>
+        <title>Incendiary Kites Burn Scars - June 30, 2018</title>
     </head>
     <body>
         <div id="map">
@@ -30,15 +30,9 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="data/BurnScars20180610_3.js"></script>
-        <script src="data/BurnScars20180605_4.js"></script>
-        <script src="data/BurnScars20180531_5.js"></script>
-        <script src="data/BurnScars20180530_6.js"></script>
-        <script src="data/BurnScars20180526_7.js"></script>
-        <script src="data/BurnScars20180521_8.js"></script>
-        <script src="data/BurnScars20180516_9.js"></script>
-        <script src="data/BurnScars20180515_10.js"></script>
-        <script src="data/BurnScars20180511_11.js"></script>
+        <script src="data/Shiput_UTM_2.js"></script>
+        <script src="data/BurnScars_3.js"></script>
+        <script src="data/KKLJNFData_4.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -57,26 +51,24 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[31.404175372464863,34.412817984312404],[31.517134815408156,34.606313611331814]]);
+        }).fitBounds([[31.31248507240096,34.28011864249849],[31.5293668938804,34.65800444918613]]);
         var hash = new L.Hash(map);
         map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+		map.attributionControl.addAttribution('<a href="https://medium.com/@HarelDan/incendiary-kites-burn-scars-graphs-6f7f6c86998f" target="_blank">Charts & Graphs</a>');
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
-        var overlay_OpenStreetMap_0 = L.tileLayer('http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        var overlay_OpenStreetMap_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             opacity: 1.0
         });
         overlay_OpenStreetMap_0.addTo(map);
         map.addLayer(overlay_OpenStreetMap_0);
-        var overlay_GoogleSatellite_1 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        var overlay_Sentinel2_1 = L.tileLayer('https://p1z0suos1k.execute-api.eu-central-1.amazonaws.com/production/S2A_tile_20180625_36RXV_0/{z}/{x}/{y}?bands=4,3,2&tile_size=256', {
             opacity: 1.0
         });
-        overlay_GoogleSatellite_1.addTo(map);
-        var overlay_Sentinel2June10_2 = L.tileLayer('https://p1z0suos1k.execute-api.eu-central-1.amazonaws.com/production/S2B_tile_20180610_36RXV_0/{z}/{x}/{y}?bands=4,3,2&tile_size=256', {
-            opacity: 1.0
-        });
-        overlay_Sentinel2June10_2.addTo(map);
-        function pop_BurnScars20180610_3(feature, layer) {
+        overlay_Sentinel2_1.addTo(map);
+        map.addLayer(overlay_Sentinel2_1);
+        function pop_Shiput_UTM_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (i in e.target._eventParents) {
@@ -87,51 +79,42 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">Imagery Date</th>\
-                        <td>' + (feature.properties['Imagery Date'] !== null ? Autolinker.link(String(feature.properties['Imagery Date'])) : '') + '</td>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? Autolinker.link(String(feature.properties['Name'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Area (sq. meters)</th>\
-                        <td>' + (feature.properties['Area (sq. meters)'] !== null ? Autolinker.link(String(feature.properties['Area (sq. meters)'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Landcover</th>\
-                        <td>' + (feature.properties['Landcover'] !== null ? Autolinker.link(String(feature.properties['Landcover'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Distance</th>\
-                        <td>' + (feature.properties['Distance'] !== null ? Autolinker.link(String(feature.properties['Distance'])) : '') + '</td>\
+                        <th scope="row">Area (Dunam)</th>\
+                        <td>' + (feature.properties['area_d'] !== null ? Autolinker.link(String(feature.properties['area_d'])) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_BurnScars20180610_3_0() {
+        function style_Shiput_UTM_2_0() {
             return {
-                pane: 'pane_BurnScars20180610_3',
+                pane: 'pane_Shiput_UTM_2',
                 opacity: 1,
-                color: 'rgba(255,0,0,1.0)',
+                color: 'rgba(35,130,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 2.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(255,0,0,0.5019607843137255)',
+                fillColor: 'rgba(35,164,35,0.10196078431372549)',
             }
         }
-        map.createPane('pane_BurnScars20180610_3');
-        map.getPane('pane_BurnScars20180610_3').style.zIndex = 403;
-        map.getPane('pane_BurnScars20180610_3').style['mix-blend-mode'] = 'normal';
-        var layer_BurnScars20180610_3 = new L.geoJson(json_BurnScars20180610_3, {
+        map.createPane('pane_Shiput_UTM_2');
+        map.getPane('pane_Shiput_UTM_2').style.zIndex = 402;
+        map.getPane('pane_Shiput_UTM_2').style['mix-blend-mode'] = 'normal';
+        var layer_Shiput_UTM_2 = new L.geoJson(json_Shiput_UTM_2, {
             attribution: '<a href=""></a>',
-            pane: 'pane_BurnScars20180610_3',
-            onEachFeature: pop_BurnScars20180610_3,
-            style: style_BurnScars20180610_3_0,
+            pane: 'pane_Shiput_UTM_2',
+            onEachFeature: pop_Shiput_UTM_2,
+            style: style_Shiput_UTM_2_0,
         });
-        bounds_group.addLayer(layer_BurnScars20180610_3);
-        map.addLayer(layer_BurnScars20180610_3);
-        function pop_BurnScars20180605_4(feature, layer) {
+        bounds_group.addLayer(layer_Shiput_UTM_2);
+        function pop_BurnScars_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (i in e.target._eventParents) {
@@ -157,420 +140,241 @@
                         <th scope="row">Distance</th>\
                         <td>' + (feature.properties['Distance'] !== null ? Autolinker.link(String(feature.properties['Distance'])) : '') + '</td>\
                     </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DateSort'] !== null ? Autolinker.link(String(feature.properties['DateSort'])) : '') + '</td>\
+                    </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_BurnScars20180605_4_0() {
-            return {
-                pane: 'pane_BurnScars20180605_4',
+        function style_BurnScars_3_0(feature) {
+            switch(String(feature.properties['DateSort'])) {
+                case 'Date 2018-05-11':
+                    return {
+                pane: 'pane_BurnScars_3',
                 opacity: 1,
-                color: 'rgba(255,32,0,1.0)',
+                color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(255,32,0,0.5019607843137255)',
+                fillColor: 'rgba(255,255,1,0.5019607843137255)',
             }
-        }
-        map.createPane('pane_BurnScars20180605_4');
-        map.getPane('pane_BurnScars20180605_4').style.zIndex = 404;
-        map.getPane('pane_BurnScars20180605_4').style['mix-blend-mode'] = 'normal';
-        var layer_BurnScars20180605_4 = new L.geoJson(json_BurnScars20180605_4, {
-            attribution: '<a href=""></a>',
-            pane: 'pane_BurnScars20180605_4',
-            onEachFeature: pop_BurnScars20180605_4,
-            style: style_BurnScars20180605_4_0,
-        });
-        bounds_group.addLayer(layer_BurnScars20180605_4);
-        map.addLayer(layer_BurnScars20180605_4);
-        function pop_BurnScars20180531_5(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">Imagery Date</th>\
-                        <td>' + (feature.properties['Imagery Date'] !== null ? Autolinker.link(String(feature.properties['Imagery Date'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Area (sq. meters)</th>\
-                        <td>' + (feature.properties['Area (sq. meters)'] !== null ? Autolinker.link(String(feature.properties['Area (sq. meters)'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Landcover</th>\
-                        <td>' + (feature.properties['Landcover'] !== null ? Autolinker.link(String(feature.properties['Landcover'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Distance</th>\
-                        <td>' + (feature.properties['Distance'] !== null ? Autolinker.link(String(feature.properties['Distance'])) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_BurnScars20180531_5_0() {
-            return {
-                pane: 'pane_BurnScars20180531_5',
+                    break;
+                case 'Date 2018-05-16':
+                    return {
+                pane: 'pane_BurnScars_3',
                 opacity: 1,
-                color: 'rgba(254,64,0,1.0)',
+                color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(254,64,0,0.5019607843137255)',
+                fillColor: 'rgba(255,232,0,0.5019607843137255)',
             }
-        }
-        map.createPane('pane_BurnScars20180531_5');
-        map.getPane('pane_BurnScars20180531_5').style.zIndex = 405;
-        map.getPane('pane_BurnScars20180531_5').style['mix-blend-mode'] = 'normal';
-        var layer_BurnScars20180531_5 = new L.geoJson(json_BurnScars20180531_5, {
-            attribution: '<a href=""></a>',
-            pane: 'pane_BurnScars20180531_5',
-            onEachFeature: pop_BurnScars20180531_5,
-            style: style_BurnScars20180531_5_0,
-        });
-        bounds_group.addLayer(layer_BurnScars20180531_5);
-        map.addLayer(layer_BurnScars20180531_5);
-        function pop_BurnScars20180530_6(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">Imagery Date</th>\
-                        <td>' + (feature.properties['Imagery Date'] !== null ? Autolinker.link(String(feature.properties['Imagery Date'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Area (sq. meters)</th>\
-                        <td>' + (feature.properties['Area (sq. meters)'] !== null ? Autolinker.link(String(feature.properties['Area (sq. meters)'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Landcover</th>\
-                        <td>' + (feature.properties['Landcover'] !== null ? Autolinker.link(String(feature.properties['Landcover'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Distance</th>\
-                        <td>' + (feature.properties['Distance'] !== null ? Autolinker.link(String(feature.properties['Distance'])) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_BurnScars20180530_6_0() {
-            return {
-                pane: 'pane_BurnScars20180530_6',
+                    break;
+                case 'Date 2018-05-21':
+                    return {
+                pane: 'pane_BurnScars_3',
                 opacity: 1,
-                color: 'rgba(254,96,0,1.0)',
+                color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(254,96,0,0.5019607843137255)',
+                fillColor: 'rgba(255,209,0,0.5019607843137255)',
             }
-        }
-        map.createPane('pane_BurnScars20180530_6');
-        map.getPane('pane_BurnScars20180530_6').style.zIndex = 406;
-        map.getPane('pane_BurnScars20180530_6').style['mix-blend-mode'] = 'normal';
-        var layer_BurnScars20180530_6 = new L.geoJson(json_BurnScars20180530_6, {
-            attribution: '<a href=""></a>',
-            pane: 'pane_BurnScars20180530_6',
-            onEachFeature: pop_BurnScars20180530_6,
-            style: style_BurnScars20180530_6_0,
-        });
-        bounds_group.addLayer(layer_BurnScars20180530_6);
-        map.addLayer(layer_BurnScars20180530_6);
-        function pop_BurnScars20180526_7(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">Imagery Date</th>\
-                        <td>' + (feature.properties['Imagery Date'] !== null ? Autolinker.link(String(feature.properties['Imagery Date'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Area (sq. meters)</th>\
-                        <td>' + (feature.properties['Area (sq. meters)'] !== null ? Autolinker.link(String(feature.properties['Area (sq. meters)'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Landcover</th>\
-                        <td>' + (feature.properties['Landcover'] !== null ? Autolinker.link(String(feature.properties['Landcover'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Distance</th>\
-                        <td>' + (feature.properties['Distance'] !== null ? Autolinker.link(String(feature.properties['Distance'])) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_BurnScars20180526_7_0() {
-            return {
-                pane: 'pane_BurnScars20180526_7',
+                    break;
+                case 'Date 2018-05-26':
+                    return {
+                pane: 'pane_BurnScars_3',
                 opacity: 1,
-                color: 'rgba(253,128,0,1.0)',
+                color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(253,128,0,0.5019607843137255)',
+                fillColor: 'rgba(255,186,0,0.5019607843137255)',
             }
-        }
-        map.createPane('pane_BurnScars20180526_7');
-        map.getPane('pane_BurnScars20180526_7').style.zIndex = 407;
-        map.getPane('pane_BurnScars20180526_7').style['mix-blend-mode'] = 'normal';
-        var layer_BurnScars20180526_7 = new L.geoJson(json_BurnScars20180526_7, {
-            attribution: '<a href=""></a>',
-            pane: 'pane_BurnScars20180526_7',
-            onEachFeature: pop_BurnScars20180526_7,
-            style: style_BurnScars20180526_7_0,
-        });
-        bounds_group.addLayer(layer_BurnScars20180526_7);
-        map.addLayer(layer_BurnScars20180526_7);
-        function pop_BurnScars20180521_8(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">Imagery Date</th>\
-                        <td>' + (feature.properties['Imagery Date'] !== null ? Autolinker.link(String(feature.properties['Imagery Date'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Area (sq. meters)</th>\
-                        <td>' + (feature.properties['Area (sq. meters)'] !== null ? Autolinker.link(String(feature.properties['Area (sq. meters)'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Landcover</th>\
-                        <td>' + (feature.properties['Landcover'] !== null ? Autolinker.link(String(feature.properties['Landcover'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Distance</th>\
-                        <td>' + (feature.properties['Distance'] !== null ? Autolinker.link(String(feature.properties['Distance'])) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_BurnScars20180521_8_0() {
-            return {
-                pane: 'pane_BurnScars20180521_8',
+                    break;
+                case 'Date 2018-05-31':
+                    return {
+                pane: 'pane_BurnScars_3',
                 opacity: 1,
-                color: 'rgba(253,159,0,1.0)',
+                color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(253,159,0,0.5019607843137255)',
+                fillColor: 'rgba(255,162,0,0.5019607843137255)',
             }
-        }
-        map.createPane('pane_BurnScars20180521_8');
-        map.getPane('pane_BurnScars20180521_8').style.zIndex = 408;
-        map.getPane('pane_BurnScars20180521_8').style['mix-blend-mode'] = 'normal';
-        var layer_BurnScars20180521_8 = new L.geoJson(json_BurnScars20180521_8, {
-            attribution: '<a href=""></a>',
-            pane: 'pane_BurnScars20180521_8',
-            onEachFeature: pop_BurnScars20180521_8,
-            style: style_BurnScars20180521_8_0,
-        });
-        bounds_group.addLayer(layer_BurnScars20180521_8);
-        map.addLayer(layer_BurnScars20180521_8);
-        function pop_BurnScars20180516_9(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">Imagery Date</th>\
-                        <td>' + (feature.properties['Imagery Date'] !== null ? Autolinker.link(String(feature.properties['Imagery Date'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Area (sq. meters)</th>\
-                        <td>' + (feature.properties['Area (sq. meters)'] !== null ? Autolinker.link(String(feature.properties['Area (sq. meters)'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Landcover</th>\
-                        <td>' + (feature.properties['Landcover'] !== null ? Autolinker.link(String(feature.properties['Landcover'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Distance</th>\
-                        <td>' + (feature.properties['Distance'] !== null ? Autolinker.link(String(feature.properties['Distance'])) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_BurnScars20180516_9_0() {
-            return {
-                pane: 'pane_BurnScars20180516_9',
+                    break;
+                case 'Date 2018-06-05':
+                    return {
+                pane: 'pane_BurnScars_3',
                 opacity: 1,
-                color: 'rgba(252,191,0,1.0)',
+                color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(252,191,0,0.5019607843137255)',
+                fillColor: 'rgba(255,139,0,0.5019607843137255)',
             }
-        }
-        map.createPane('pane_BurnScars20180516_9');
-        map.getPane('pane_BurnScars20180516_9').style.zIndex = 409;
-        map.getPane('pane_BurnScars20180516_9').style['mix-blend-mode'] = 'normal';
-        var layer_BurnScars20180516_9 = new L.geoJson(json_BurnScars20180516_9, {
-            attribution: '<a href=""></a>',
-            pane: 'pane_BurnScars20180516_9',
-            onEachFeature: pop_BurnScars20180516_9,
-            style: style_BurnScars20180516_9_0,
-        });
-        bounds_group.addLayer(layer_BurnScars20180516_9);
-        map.addLayer(layer_BurnScars20180516_9);
-        function pop_BurnScars20180515_10(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">Imagery Date</th>\
-                        <td>' + (feature.properties['Imagery Date'] !== null ? Autolinker.link(String(feature.properties['Imagery Date'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Area (sq. meters)</th>\
-                        <td>' + (feature.properties['Area (sq. meters)'] !== null ? Autolinker.link(String(feature.properties['Area (sq. meters)'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Landcover</th>\
-                        <td>' + (feature.properties['Landcover'] !== null ? Autolinker.link(String(feature.properties['Landcover'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Distance</th>\
-                        <td>' + (feature.properties['Distance'] !== null ? Autolinker.link(String(feature.properties['Distance'])) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_BurnScars20180515_10_0() {
-            return {
-                pane: 'pane_BurnScars20180515_10',
+                    break;
+                case 'Date 2018-06-10':
+                    return {
+                pane: 'pane_BurnScars_3',
                 opacity: 1,
-                color: 'rgba(252,223,0,1.0)',
+                color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(252,223,0,0.5019607843137255)',
+                fillColor: 'rgba(255,116,0,0.5019607843137255)',
             }
-        }
-        map.createPane('pane_BurnScars20180515_10');
-        map.getPane('pane_BurnScars20180515_10').style.zIndex = 410;
-        map.getPane('pane_BurnScars20180515_10').style['mix-blend-mode'] = 'normal';
-        var layer_BurnScars20180515_10 = new L.geoJson(json_BurnScars20180515_10, {
-            attribution: '<a href=""></a>',
-            pane: 'pane_BurnScars20180515_10',
-            onEachFeature: pop_BurnScars20180515_10,
-            style: style_BurnScars20180515_10_0,
-        });
-        bounds_group.addLayer(layer_BurnScars20180515_10);
-        map.addLayer(layer_BurnScars20180515_10);
-        function pop_BurnScars20180511_11(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">Imagery Date</th>\
-                        <td>' + (feature.properties['Imagery Date'] !== null ? Autolinker.link(String(feature.properties['Imagery Date'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Area (sq. meters)</th>\
-                        <td>' + (feature.properties['Area (sq. meters)'] !== null ? Autolinker.link(String(feature.properties['Area (sq. meters)'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Landcover</th>\
-                        <td>' + (feature.properties['Landcover'] !== null ? Autolinker.link(String(feature.properties['Landcover'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Distance</th>\
-                        <td>' + (feature.properties['Distance'] !== null ? Autolinker.link(String(feature.properties['Distance'])) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_BurnScars20180511_11_0() {
-            return {
-                pane: 'pane_BurnScars20180511_11',
+                    break;
+                case 'Date 2018-06-15':
+                    return {
+                pane: 'pane_BurnScars_3',
                 opacity: 1,
-                color: 'rgba(251,255,1,1.0)',
+                color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(251,255,1,0.5019607843137255)',
+                fillColor: 'rgba(255,93,0,0.5019607843137255)',
+            }
+                    break;
+                case 'Date 2018-06-20':
+                    return {
+                pane: 'pane_BurnScars_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,69,0,0.5019607843137255)',
+            }
+                    break;
+                case 'Date 2018-06-25':
+                    return {
+                pane: 'pane_BurnScars_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,46,0,0.5019607843137255)',
+            }
+                    break;
+                case 'Date 2018-06-30':
+                    return {
+                pane: 'pane_BurnScars_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,23,0,0.5019607843137255)',
+            }
+                    break;
             }
         }
-        map.createPane('pane_BurnScars20180511_11');
-        map.getPane('pane_BurnScars20180511_11').style.zIndex = 411;
-        map.getPane('pane_BurnScars20180511_11').style['mix-blend-mode'] = 'normal';
-        var layer_BurnScars20180511_11 = new L.geoJson(json_BurnScars20180511_11, {
+        map.createPane('pane_BurnScars_3');
+        map.getPane('pane_BurnScars_3').style.zIndex = 403;
+        map.getPane('pane_BurnScars_3').style['mix-blend-mode'] = 'normal';
+        var layer_BurnScars_3 = new L.geoJson(json_BurnScars_3, {
             attribution: '<a href="http://hareldunn.wixsite.com/harel-dan">Harel Dan</a>',
-            pane: 'pane_BurnScars20180511_11',
-            onEachFeature: pop_BurnScars20180511_11,
-            style: style_BurnScars20180511_11_0,
+            pane: 'pane_BurnScars_3',
+            onEachFeature: pop_BurnScars_3,
+            style: style_BurnScars_3_0,
         });
-        bounds_group.addLayer(layer_BurnScars20180511_11);
-        map.addLayer(layer_BurnScars20180511_11);
+        bounds_group.addLayer(layer_BurnScars_3);
+        map.addLayer(layer_BurnScars_3);
+        function pop_KKLJNFData_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">FireDate</th>\
+                        <td>' + (feature.properties['FireDate'] !== null ? Autolinker.link(String(feature.properties['FireDate'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">MappingDate</th>\
+                        <td>' + (feature.properties['MappingDate'] !== null ? Autolinker.link(String(feature.properties['MappingDate'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Comments</th>\
+                        <td>' + (feature.properties['Comments'] !== null ? Autolinker.link(String(feature.properties['Comments'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">AreaDunam</th>\
+                        <td>' + (feature.properties['AreaDunam'] !== null ? Autolinker.link(String(feature.properties['AreaDunam'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Group'] !== null ? Autolinker.link(String(feature.properties['Group'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_KKLJNFData_4_0(feature) {
+            switch(String(feature.properties['Group'])) {
+                case 'A':
+                    return {
+                pane: 'pane_KKLJNFData_4',
+                opacity: 1,
+                color: 'rgba(35,35,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 0,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_KKLJNFData_4');
+        map.getPane('pane_KKLJNFData_4').style.zIndex = 404;
+        map.getPane('pane_KKLJNFData_4').style['mix-blend-mode'] = 'normal';
+        var layer_KKLJNFData_4 = new L.geoJson(json_KKLJNFData_4, {
+            attribution: '<a href="http://kkl.maps.arcgis.com/apps/webappviewer/index.html?id=6ddb0b0b3da74aa2a4733a5ea9f73fbb">KKL-JNF</a>',
+            pane: 'pane_KKLJNFData_4',
+            onEachFeature: pop_KKLJNFData_4,
+            style: style_KKLJNFData_4_0,
+        });
+        bounds_group.addLayer(layer_KKLJNFData_4);
         var title = new L.Control();
         title.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'info');
@@ -578,11 +382,11 @@
             return this._div;
         };
         title.update = function () {
-            this._div.innerHTML = '<h2>Incendiary Kites Burn Scars</h2>';
+            this._div.innerHTML = '<h2>Incendiary Kites Burn Scars - June 30, 2018</h2>';
         };
         title.addTo(map);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/BurnScars20180511_11.png" /> Burn Scars 2018-05-11': layer_BurnScars20180511_11,'<img src="legend/BurnScars20180515_10.png" /> Burn Scars 2018-05-15': layer_BurnScars20180515_10,'<img src="legend/BurnScars20180516_9.png" /> Burn Scars 2018-05-16': layer_BurnScars20180516_9,'<img src="legend/BurnScars20180521_8.png" /> Burn Scars 2018-05-21': layer_BurnScars20180521_8,'<img src="legend/BurnScars20180526_7.png" /> Burn Scars 2018-05-26': layer_BurnScars20180526_7,'<img src="legend/BurnScars20180530_6.png" /> Burn Scars 2018-05-30': layer_BurnScars20180530_6,'<img src="legend/BurnScars20180531_5.png" /> Burn Scars 2018-05-31': layer_BurnScars20180531_5,'<img src="legend/BurnScars20180605_4.png" /> Burn Scars 2018-06-05': layer_BurnScars20180605_4,'<img src="legend/BurnScars20180610_3.png" /> Burn Scars 2018-06-10': layer_BurnScars20180610_3,"Sentinel-2 June 10": overlay_Sentinel2June10_2,"Google Satellite": overlay_GoogleSatellite_1,"OpenStreetMap": overlay_OpenStreetMap_0,}).addTo(map);
+        L.control.layers(baseMaps,{'KKL-JNF Data<br /><table><tr><td style="text-align: center;"><img src="legend/KKLJNFData_4_0.png" /></td><td></td></tr></table>': layer_KKLJNFData_4,'Burn Scars<br /><table><tr><td style="text-align: center;"><img src="legend/BurnScars_3_Date201805110.png" /></td><td>Date 2018-05-11</td></tr><tr><td style="text-align: center;"><img src="legend/BurnScars_3_Date201805161.png" /></td><td>Date 2018-05-16</td></tr><tr><td style="text-align: center;"><img src="legend/BurnScars_3_Date201805212.png" /></td><td>Date 2018-05-21</td></tr><tr><td style="text-align: center;"><img src="legend/BurnScars_3_Date201805263.png" /></td><td>Date 2018-05-26</td></tr><tr><td style="text-align: center;"><img src="legend/BurnScars_3_Date201805314.png" /></td><td>Date 2018-05-31</td></tr><tr><td style="text-align: center;"><img src="legend/BurnScars_3_Date201806055.png" /></td><td>Date 2018-06-05</td></tr><tr><td style="text-align: center;"><img src="legend/BurnScars_3_Date201806106.png" /></td><td>Date 2018-06-10</td></tr><tr><td style="text-align: center;"><img src="legend/BurnScars_3_Date201806157.png" /></td><td>Date 2018-06-15</td></tr><tr><td style="text-align: center;"><img src="legend/BurnScars_3_Date201806208.png" /></td><td>Date 2018-06-20</td></tr><tr><td style="text-align: center;"><img src="legend/BurnScars_3_Date201806259.png" /></td><td>Date 2018-06-25</td></tr><tr><td style="text-align: center;"><img src="legend/BurnScars_3_Date2018063010.png" /></td><td>Date 2018-06-30</td></tr></table>': layer_BurnScars_3,'<img src="legend/Shiput_UTM_2.png" /> Shiput_UTM': layer_Shiput_UTM_2,"Sentinel-2": overlay_Sentinel2_1,"Open Street Map": overlay_OpenStreetMap_0,}).addTo(map);
         setBounds();
         </script>
     </body>
