@@ -16,7 +16,7 @@
             margin: 0;
         }
         </style>
-        <title>Incendiary Kites Burn Scars - July 10, 2018</title>
+        <title>Incendiary Kites Burn Scars - July 20, 2018</title>
     </head>
     <body>
         <div id="map">
@@ -236,11 +236,11 @@
             return this._div;
         };
         title.update = function () {
-            this._div.innerHTML = '<h2>Incendiary Kites Burn Scars - July 10, 2018</h2>';
+            this._div.innerHTML = '<h2>Incendiary Kites Burn Scars - July 20, 2018</h2>';
         };
         title.addTo(map);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/KKLJNFData_4.png" /> KKL-JNF Data': layer_KKLJNFData_4,'<img src="legend/BurnScars_3.png" /> Burn Scars': layer_BurnScars_3,'<img src="legend/Jurisdiction_2.png" /> Jurisdiction': layer_Jurisdiction_2,"Sentinel-2": overlay_Sentinel2_1,"Open Street Map": overlay_OpenStreetMap_0,}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/KKLJNFData_4.png" /> KKL-JNF Data': layer_KKLJNFData_4,'<img src="legend/BurnScars_3.png" /> Burn Scars': layer_BurnScars_3,'<img src="legend/Jurisdiction_2.png" /> Jurisdiction': layer_Jurisdiction_2,"Sentinel-2, July 10": overlay_Sentinel2_1,"Open Street Map": overlay_OpenStreetMap_0,}).addTo(map);
         setBounds();
         </script>
     </body>
