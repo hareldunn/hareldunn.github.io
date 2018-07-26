@@ -1,6 +1,6 @@
-var json_GlobalPowerplantDatabaseFossilFuel_1 = {
+var json_GlobalPowerplantDatabaseFossilFuel_2 = {
 "type": "FeatureCollection",
-"name": "GlobalPowerplantDatabaseFossilFuel_1",
+"name": "GlobalPowerplantDatabaseFossilFuel_2",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 { "type": "Feature", "properties": { "country": "AGO", "country_long": "Angola", "name": "Biopio", "gppd_idnr": "WRI1023002", "capacity_mw": 22.8, "latitude": -12.4706, "longitude": 13.7319, "fuel1": "Oil", "fuel2": null, "fuel3": null, "fuel4": null, "commissioning_year": null, "owner": null, "source": "African Development Bank Group", "url": "http:\/\/powerafrica.opendataforafrica.org", "geolocation_source": "Power Africa", "year_of_capacity_data": null, "generation_gwh_2013": null, "generation_gwh_2014": null, "generation_gwh_2015": null, "generation_gwh_2016": null, "estimated_generation_gwh": 739.2929145000001 }, "geometry": { "type": "Point", "coordinates": [ 13.7319, -12.4706 ] } },
